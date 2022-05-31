@@ -380,7 +380,7 @@ Future CheckRegister(
     username, password, name, surname, picdate, context) async {
   EasyLoading.show(status: 'loading...');
 
-  Uri url = Uri.parse('http://165.22.63.114:3200/api/customer');
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer');
   http
       .post(
     url,
