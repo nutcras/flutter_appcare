@@ -1,11 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/models/DatePicker.dart';
 import 'package:flutter_appcare/views/SelectBook.dart';
-
-import 'package:provider/provider.dart';
 
 class Carddetail extends StatefulWidget {
   const Carddetail({Key? key, required this.data}) : super(key: key);
@@ -28,10 +22,10 @@ class _CarddetailState extends State<Carddetail> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Center(
+            const Center(
               //รูปavatar
               child: CircleAvatar(
                 radius: 70,
@@ -39,92 +33,80 @@ class _CarddetailState extends State<Carddetail> {
                 // backgroundImage: ('widget.data['image']'),
               ),
             ),
-            SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 30),
             ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Container(
-                color: Color.fromARGB(255, 150, 217, 234),
+                color: const Color.fromARGB(255, 150, 217, 234),
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
                     Text(
                       'ชื่อ ${widget.data['fname']} ${widget.data['lname']}',
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
                     Text('ราคาต่อชั่วโมง ${widget.data['rate']}',
-                        style: TextStyle(fontSize: 18)),
+                        style: const TextStyle(fontSize: 18)),
                     Text('${widget.data['type']}',
-                        style: TextStyle(fontSize: 18)),
+                        style: const TextStyle(fontSize: 18)),
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             SizedBox(
                 child: Row(
               children: [
-                SizedBox(
-                  width: 30,
-                ),
-                // ignore: prefer_const_constructors
-                Icon(
+                const SizedBox(width: 30),
+                const Icon(
                   Icons.call,
                   color: Colors.blue,
                   size: 30,
                 ),
                 Text(
                   '   ${widget.data['phone']}',
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 ),
-                SizedBox(
-                  width: 120,
-                ),
+                const SizedBox(width: 120),
               ],
             )),
-            SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Row(children: [
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.map,
                     color: Colors.blue,
                   ),
                   Text(
                     '''   ${widget.data['adr1']} ${widget.data['adr2']} 
     ${widget.data['city']}''',
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),
-              SizedBox(width: 50),
+              const SizedBox(width: 50),
             ]),
-            SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 30),
             TextButton(
               style: TextButton.styleFrom(
                 padding: const EdgeInsets.fromLTRB(70, 15, 70, 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                backgroundColor: Color.fromARGB(255, 32, 204, 187),
-                primary: Color.fromARGB(255, 255, 255, 255),
+                backgroundColor: const Color.fromARGB(255, 32, 204, 187),
+                primary: const Color.fromARGB(255, 255, 255, 255),
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                        builder: (BuildContext context) => SelectBooking()));
+                        builder: (BuildContext context) =>
+                            const SelectBooking()));
               },
               child: const Text(
                 'นัดเวลา',

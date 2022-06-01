@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/views/login.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profiles extends StatefulWidget {
@@ -30,28 +27,28 @@ class _ProfilesState extends State<Profiles> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ข้อมูลส่วนตัว'),
-        backgroundColor: Color.fromARGB(255, 45, 134, 156),
+        title: const Text('ข้อมูลส่วนตัว'),
+        backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Center(
+          const Center(
             child: CircleAvatar(
               radius: 80,
               backgroundImage: AssetImage('assets/images/profile.jpg'),
               backgroundColor: Color.fromARGB(255, 45, 134, 156),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Column(
               children: [
                 Container(
-                  color: Color.fromARGB(255, 150, 217, 234),
+                  color: const Color.fromARGB(255, 150, 217, 234),
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
@@ -59,12 +56,12 @@ class _ProfilesState extends State<Profiles> {
                         '${widget.data['title']} ${widget.data['fname']} ${widget.data['lname']}',
                         // '${data['title']} ${data['fname']} ${data['lname']}',
                         //สำหรับใส่ข้อมูลจากdatabase
-                        style: TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24),
                       ),
                       Text(
-                        'อายุ : 22  ' + ' เพศ : ${widget.data['title']}',
+                        'อายุ : 22    เพศ : ${widget.data['title']}',
                         //ใส่อายุ
-                        style: TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24),
                       ),
                     ],
                   ),
@@ -72,7 +69,7 @@ class _ProfilesState extends State<Profiles> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -81,7 +78,7 @@ class _ProfilesState extends State<Profiles> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
-                  color: Color.fromARGB(255, 150, 217, 234),
+                  color: const Color.fromARGB(255, 150, 217, 234),
                   padding: const EdgeInsets.all(8.0),
                   child: const Text(
                     'โรคเบาหวาน',
@@ -103,19 +100,19 @@ class _ProfilesState extends State<Profiles> {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Row(
-            children: [
+            children: const [
               SizedBox(width: 80),
               Text('ลักษณะผู้ป่วย', style: TextStyle(fontSize: 20)),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             children: [
-              SizedBox(width: 80),
+              const SizedBox(width: 80),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
@@ -129,14 +126,15 @@ class _ProfilesState extends State<Profiles> {
               ),
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             children: [
-              SizedBox(width: 80),
-              Icon(Icons.phone),
-              SizedBox(width: 10),
-              Text('${widget.data['phone']}', style: TextStyle(fontSize: 17)),
-              SizedBox(width: 105),
+              const SizedBox(width: 80),
+              const Icon(Icons.phone),
+              const SizedBox(width: 10),
+              Text('${widget.data['phone']}',
+                  style: const TextStyle(fontSize: 17)),
+              const SizedBox(width: 105),
               TextButton(
                   onPressed: () {},
                   child: const Text('แก้ไข',
@@ -145,27 +143,27 @@ class _ProfilesState extends State<Profiles> {
           ),
           Row(
             children: [
-              SizedBox(width: 80),
-              Icon(Icons.phone),
-              SizedBox(width: 10),
+              const SizedBox(width: 80),
+              const Icon(Icons.phone),
+              const SizedBox(width: 10),
               Text('''${widget.data['address']}''',
-                  style: TextStyle(fontSize: 17)),
-              SizedBox(width: 17),
+                  style: const TextStyle(fontSize: 17)),
+              const SizedBox(width: 17),
               TextButton(
                   onPressed: () {},
                   child: const Text('แก้ไข',
                       style: TextStyle(fontSize: 17, color: Colors.red)))
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           TextButton(
             style: TextButton.styleFrom(
               padding: const EdgeInsets.fromLTRB(120, 20, 120, 20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              backgroundColor: Color.fromARGB(255, 232, 92, 22),
-              primary: Color.fromARGB(255, 255, 255, 255),
+              backgroundColor: const Color.fromARGB(255, 232, 92, 22),
+              primary: const Color.fromARGB(255, 255, 255, 255),
               textStyle: const TextStyle(fontSize: 20),
             ),
             onPressed: () async {
@@ -174,7 +172,7 @@ class _ProfilesState extends State<Profiles> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
+                    builder: (context) => const MyHomePage(),
                     //แก้ตรงนี้--------------------------------------------------------------------------------------
                   ),
                   (route) => false);

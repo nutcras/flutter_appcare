@@ -1,21 +1,15 @@
 // ignore_for_file: prefer_const_constructors, unused_element, avoid_print, duplicate_ignore, dead_code
 
 import 'dart:convert';
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/models/registermodel.dart';
-import 'package:flutter_appcare/models/textformfieldmodel.dart';
 import 'package:flutter_appcare/views/page1.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../configs/config.dart';
 
 class PageOne extends StatefulWidget {
-  PageOne({Key? key}) : super(key: key);
+  const PageOne({Key? key}) : super(key: key);
 
   @override
   State<PageOne> createState() => _Register();

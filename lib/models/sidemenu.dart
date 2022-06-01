@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/views/profile.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../configs/config.dart';
 import '../views/login.dart';
@@ -33,7 +32,7 @@ class _SideMenuState extends State<SideMenu> {
 
   startApi() async {
     //เอาตัวidของcustomerมาใช้กับหน้านี้แล้วเอาค่าไปใส่ในidUser
-    dynamic item = await Getdata(); //ส่งค่าไปยัง getdataหรือตัวรับapi
+    dynamic item = await getdata(); //ส่งค่าไปยัง getdataหรือตัวรับapi
     setState(() {
       data = item;
     });
@@ -181,7 +180,7 @@ ${data['fname']}  ${data['lname']}''',
   }
 }
 
-Future<dynamic> Getdata() async {
+Future<dynamic> getdata() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? idUser = prefs.getInt('idm');
@@ -193,12 +192,10 @@ Future<dynamic> Getdata() async {
     headers: headers,
   )
       .then((req) async {
-    print(req.statusCode);
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;
     } else {
-      print('error');
       return null;
     }
   });

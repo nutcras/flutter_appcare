@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, dead_code
-
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class SelectBooking extends StatefulWidget {
-  SelectBooking({Key? key}) : super(key: key);
+  const SelectBooking({Key? key}) : super(key: key);
 
   @override
   State<SelectBooking> createState() => _SelectBookingState();
@@ -76,16 +75,16 @@ class _SelectBookingState extends State<SelectBooking> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('SelectBooking'),
-        backgroundColor: Color.fromARGB(255, 45, 134, 156),
+        title: const Text('SelectBooking'),
+        backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Container(
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -109,7 +108,7 @@ class _SelectBookingState extends State<SelectBooking> {
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -133,10 +132,10 @@ class _SelectBookingState extends State<SelectBooking> {
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -160,7 +159,7 @@ class _SelectBookingState extends State<SelectBooking> {
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: pictime2,
                   readOnly: true,
@@ -182,7 +181,7 @@ class _SelectBookingState extends State<SelectBooking> {
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
-                Text('')
+                const Text('')
               ],
             )),
       ),

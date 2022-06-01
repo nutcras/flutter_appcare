@@ -29,25 +29,25 @@ class _GoogleMapsState extends State<GoogleMaps> {
             BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen)));
 
     marker.add(Marker(
-      markerId: MarkerId('2'),
-      position: LatLng(7.1713657, 100.721544),
+      markerId: const MarkerId('2'),
+      position: const LatLng(7.1713657, 100.721544),
       icon: await BitmapDescriptor.fromAssetImage(
-          ImageConfiguration(), 'assets/image/LOGO.png'),
+          const ImageConfiguration(), 'assets/image/LOGO.png'),
     ));
   }
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(7.1713657, 100.611544),
     zoom: 15,
   );
 
-  static final CameraPosition _kLake =
+  static const CameraPosition _kLake =
       CameraPosition(target: LatLng(7.1713657, 100.611544), zoom: 15);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Map')),
+      appBar: AppBar(title: const Text('Map')),
       body: GoogleMap(
         mapType: MapType.hybrid,
         initialCameraPosition: _kGooglePlex,
@@ -55,11 +55,10 @@ class _GoogleMapsState extends State<GoogleMaps> {
           _controller.complete(controller);
         },
         onTap: (LatLng value) {
-          print(value);
           setState(() {
             marker.add(
               Marker(
-                markerId: MarkerId('MarkLocation'),
+                markerId: const MarkerId('MarkLocation'),
                 position: value,
               ),
             );
@@ -70,7 +69,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
       ),
 
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: _goToTheLake, label: Text('กลับจุดเดิม')),
+          onPressed: _goToTheLake, label: const Text('กลับจุดเดิม')),
       // floatingActionButton: FloatingActionButton.extended(
       //   onPressed: _goToTheLake,
       //   label: Text('กลับมายังการนำทาง'),

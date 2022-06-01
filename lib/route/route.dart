@@ -5,8 +5,8 @@ import 'package:flutter_appcare/views/page1.dart';
 import 'package:flutter_appcare/views/Map.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
-  '/PageOne': (context) => PageOne(),
-  '/Page1': (context) => Page1(),
+  '/PageOne': (context) => const PageOne(),
+  '/Page1': (context) => const Page1(),
   '/Map': (context) => GoogleMaps(),
-  '/book': (context) => Booking(),
+  '/book': (context) => const Booking(),
 };

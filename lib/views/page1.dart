@@ -8,26 +8,21 @@ import 'package:http/http.dart' as http;
 import '../models/sidemenu.dart';
 
 class Page1 extends StatefulWidget {
-  Page1({Key? key, data}) : super(key: key);
-
+  const Page1({Key? key, data}) : super(key: key);
   @override
   State<Page1> createState() => _Page1State();
 }
 
 class _Page1State extends State<Page1> {
-  @override
   dynamic data;
-
+  @override
   void initState() {
     super.initState();
     startApi();
   }
 
   startApi() async {
-    var item = await Getdata();
-
-    print(item?.first);
-
+    var item = await getdata();
     setState(() {
       data = item;
     });
@@ -36,10 +31,10 @@ class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 227, 227, 227),
+      backgroundColor: const Color.fromARGB(255, 227, 227, 227),
       appBar: AppBar(
-        title: Text('หาพี่เลี้ยง'),
-        backgroundColor: Color.fromARGB(255, 45, 134, 156),
+        title: const Text('หาพี่เลี้ยง'),
+        backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -60,8 +55,8 @@ class _Page1State extends State<Page1> {
                 },
                 child: Card(
                   elevation: 10,
-                  color: Color.fromARGB(255, 150, 217, 234),
-                  shadowColor: Color.fromARGB(255, 10, 91, 111),
+                  color: const Color.fromARGB(255, 150, 217, 234),
+                  shadowColor: const Color.fromARGB(255, 10, 91, 111),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -72,51 +67,38 @@ class _Page1State extends State<Page1> {
                         Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Container(
+                              const SizedBox(
                                 width: 55.0,
                                 height: 55.0,
                                 // color: Color.fromARGB(255, 150, 217, 234),
                                 // ignore: prefer_const_constructors
-                                child: CircleAvatar(
-                                    // backgroundColor:
-                                    //     Color.fromARGB(255, 150, 217, 234),
-                                    // foregroundColor:
-                                    //     Color.fromARGB(255, 150, 217, 234),
-                                    // ignore: prefer_const_constructors
-                                    // backgroundImage:
-                                    //     AssetImage('assets/image/$i.jpeg'),
-
-                                    // backgroundImage:
-                                    //     NetworkImage('${data[i]['image']}'),
-                                    // backgroundImage: NetworkImage(
-                                    //     "https://obs.line-scdn.net/0ho7Hx9FjJMBh1ARpkc9xPT09XM3dGbSMbETdhGylvbiwKMSRPGm4vLVlVO3oNOXdGG297dlEAKylQNXFMSmEv/w644"),
-                                    ),
+                                child: CircleAvatar(),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Container(
-                                padding: EdgeInsets.all(22),
+                                padding: const EdgeInsets.all(22),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       '${data[i]['title']} ${data[i]['fname']} ${data[i]['lname']}',
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 2,
                                     ),
                                     Text('Rate/hr: ${data[i]['rate']}'),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 2,
                                     ),
                                     Text(
                                       '${data[i]['phone']}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 20,
                                       ),
                                     ),
@@ -134,21 +116,18 @@ class _Page1State extends State<Page1> {
   }
 }
 
-Future<dynamic> Getdata() async {
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/mentor'); //server
-  // Uri url = Uri.parse('http://192.168.1.9:3200/api/mentor');          //เครื่องกุ
+Future<dynamic> getdata() async {
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/mentor');
   return await http
       .get(
     url,
     headers: headers,
   )
       .then((req) async {
-    print(req.statusCode);
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;
     } else {
-      print('error');
       return null;
     }
   });

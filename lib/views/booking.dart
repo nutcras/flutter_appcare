@@ -15,9 +15,9 @@ class Booking extends StatefulWidget {
 }
 
 class _BookingState extends State<Booking> {
-  @override
   dynamic data;
 
+  @override
   void initState() {
     super.initState();
     startApi();
@@ -27,7 +27,7 @@ class _BookingState extends State<Booking> {
     final prefs =
         await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
     int? idUser = prefs.getInt('idm');
-    dynamic item = await Getdata(idUser); //ส่งค่าไปยัง getdataหรือตัวรับapi
+    dynamic item = await getdata(idUser); //ส่งค่าไปยัง getdataหรือตัวรับapi
     setState(() {
       data = item;
     });
@@ -56,12 +56,12 @@ class _BookingState extends State<Booking> {
                     context,
                     MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            bookdetail(data: data[i])));
+                            Bookdetail(data: data[i])));
               },
               child: Card(
                 elevation: 10,
-                color: Color.fromARGB(255, 150, 217, 234),
-                shadowColor: Color.fromARGB(255, 10, 91, 111),
+                color: const Color.fromARGB(255, 150, 217, 234),
+                shadowColor: const Color.fromARGB(255, 10, 91, 111),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -125,7 +125,7 @@ class _BookingState extends State<Booking> {
   }
 }
 
-Future<dynamic> Getdata(dynamic idUser) async {
+Future<dynamic> getdata(dynamic idUser) async {
   Uri url = Uri.parse(
       'http://206.189.92.71:3200/api/booking/cust/72/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
@@ -134,13 +134,10 @@ Future<dynamic> Getdata(dynamic idUser) async {
     url,
   )
       .then((req) async {
-    print(req.statusCode);
     if (req.statusCode == 200) {
-      print(req.body);
       var data = jsonDecode(req.body);
       return data;
     } else {
-      print('error');
       return null;
     }
   });
