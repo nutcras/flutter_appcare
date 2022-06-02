@@ -6,16 +6,15 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/sidemenu.dart';
-import 'Waitingbooking.dart';
 
-class Booking extends StatefulWidget {
-  const Booking({Key? key}) : super(key: key);
+class CancleBooking extends StatefulWidget {
+  const CancleBooking({Key? key}) : super(key: key);
 
   @override
-  State<Booking> createState() => _BookingState();
+  State<CancleBooking> createState() => _CancleBookingState();
 }
 
-class _BookingState extends State<Booking> {
+class _CancleBookingState extends State<CancleBooking> {
   dynamic data;
 
   @override
@@ -40,17 +39,6 @@ class _BookingState extends State<Booking> {
       appBar: AppBar(
         title: const Text('นัดหมาย'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                    builder: (BuildContext context) => WaitingBooking()));
-          },
-          child: Icon(
-            Icons.timelapse_sharp, // add custom icons also
-          ),
-        ),
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -139,7 +127,7 @@ class _BookingState extends State<Booking> {
 
 Future<dynamic> getdata(dynamic idUser) async {
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/booking/cust/72/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+      'http://206.189.92.71:3200/api/CancleBooking/cust/74/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   return await http
       .get(
     url,

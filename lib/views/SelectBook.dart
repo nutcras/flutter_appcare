@@ -1,5 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter_appcare/views/Waitingbooking.dart';
+import 'package:flutter_appcare/views/book_detail.dart';
 import 'package:intl/intl.dart';
 
 class SelectBooking extends StatefulWidget {
@@ -181,7 +183,16 @@ class _SelectBookingState extends State<SelectBooking> {
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
-                const Text('')
+                ElevatedButton(
+                  onPressed: (() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                                WaitingBooking()));
+                  }),
+                  child: null,
+                )
               ],
             )),
       ),
