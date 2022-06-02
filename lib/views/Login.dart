@@ -198,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
 Future checkLogin(String username, String password, context) async {
   EasyLoading.show(status: 'loading...');
 
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/mentor/login');
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/login');
   http
       .post(
     url,
