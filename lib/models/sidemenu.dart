@@ -122,12 +122,19 @@ ${data['fname']}  ${data['lname']}''',
                   'นัดหมาย',
                   '/book',
                 ),
+                // routeItem(
+                //   context,
+                //   Icon(Icons.map),
+                //   //แก้ตรงนี้--------------------------------------------------------------------------------------
+                //   'Map',
+                //   '/Map',
+                // ),
                 routeItem(
                   context,
-                  Icon(Icons.map),
+                  Icon(Icons.settings_backup_restore),
                   //แก้ตรงนี้--------------------------------------------------------------------------------------
-                  'Map',
-                  '/Map',
+                  'ดูประวัติ',
+                  '/Backup',
                 ),
               ],
             ),
@@ -184,7 +191,7 @@ Future<dynamic> getdata() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? idUser = prefs.getInt('idm');
-  Uri url = Uri.parse('http://165.22.63.114:3200/api/customer/$idUser');
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/$idUser');
   // Uri url = Uri.parse('http://192.168.1.9:3200/api/customer/$idUser');
   return await http
       .get(

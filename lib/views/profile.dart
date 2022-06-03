@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/views/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,19 +12,6 @@ class Profiles extends StatefulWidget {
 }
 
 class _ProfilesState extends State<Profiles> {
-  // datetime() {
-  //   final birtday1 = DateFormat('yy, mm, dd')
-  //       .format(DateTime.parse('${data['start_time']}'));
-  //   DateTime birthday = DateTime.parse(birtday1);
-  //   DateDuration duration;
-  //   duration = AgeCalculator.age(birthday);
-  //   print('$duration');
-  //   return duration;
-  // }
-
-  // dynamic age = DateTime.now() - DateFormat('mm-yy').format(
-  //                                           DateTime.parse(
-  //                                               '${data['birtday']}'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,7 +125,9 @@ class _ProfilesState extends State<Profiles> {
                   style: const TextStyle(fontSize: 17)),
               const SizedBox(width: 105),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    senddata('${widget.data['idc']}');
+                  },
                   child: const Text('แก้ไข',
                       style: TextStyle(fontSize: 17, color: Colors.red)))
             ],
@@ -150,7 +141,9 @@ class _ProfilesState extends State<Profiles> {
                   style: const TextStyle(fontSize: 17)),
               const SizedBox(width: 17),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    senddata('${widget.data['idc']}');
+                  },
                   child: const Text('แก้ไข',
                       style: TextStyle(fontSize: 17, color: Colors.red)))
             ],
@@ -183,4 +176,16 @@ class _ProfilesState extends State<Profiles> {
       ),
     );
   }
+}
+
+Future senddata(dynamic idUser) async {
+  Uri url = Uri.parse('http://206.189.02.71:3200/api/customer/$idUser');
+  return await http.post(url).then((req) async {
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+      return data;
+    } else {
+      return null;
+    }
+  });
 }

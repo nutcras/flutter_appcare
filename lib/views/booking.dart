@@ -40,17 +40,33 @@ class _BookingState extends State<Booking> {
       appBar: AppBar(
         title: const Text('นัดหมาย'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                    builder: (BuildContext context) => WaitingBooking()));
-          },
-          child: Icon(
-            Icons.timelapse_sharp, // add custom icons also
-          ),
-        ),
+        // leading: GestureDetector(
+        //   onTap: () {
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute<void>(
+        //             builder: (BuildContext context) => WaitingBooking()));
+        //   },
+        //   child: Icon(
+        //     Icons.timelapse_sharp, // add custom icons also
+        //   ),
+        // ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.timelapse_sharp,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                      builder: (BuildContext context) => WaitingBooking()));
+
+              // do something
+            },
+          )
+        ],
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,

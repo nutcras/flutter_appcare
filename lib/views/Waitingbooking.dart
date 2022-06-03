@@ -37,7 +37,7 @@ class _WaitingBookingState extends State<WaitingBooking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('นัดหมาย'),
+        title: const Text('รอการยืนยัน'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SizedBox(
@@ -120,7 +120,7 @@ class _WaitingBookingState extends State<WaitingBooking> {
           ),
         ),
       ),
-      drawer: SideMenu(), //หน้าปุ่มsidemenu
+      //หน้าปุ่มsidemenu
     );
   }
 }
