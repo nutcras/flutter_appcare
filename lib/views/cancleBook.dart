@@ -37,7 +37,7 @@ class _CancleBookingState extends State<CancleBooking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('นัดหมาย'),
+        title: const Text('การนัดหมายที่ยกเลิก'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SizedBox(
@@ -119,8 +119,7 @@ class _CancleBookingState extends State<CancleBooking> {
             ),
           ),
         ),
-      ),
-      drawer: SideMenu(), //หน้าปุ่มsidemenu
+      ), //หน้าปุ่มsidemenu
     );
   }
 }

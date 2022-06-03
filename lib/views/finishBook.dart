@@ -37,7 +37,7 @@ class _FinishBookingState extends State<FinishBooking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('นัดหมาย'),
+        title: const Text('การนัดหมายที่สำเร็จ'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SizedBox(
@@ -120,7 +120,6 @@ class _FinishBookingState extends State<FinishBooking> {
           ),
         ),
       ),
-      drawer: SideMenu(), //หน้าปุ่มsidemenu
     );
   }
 }
