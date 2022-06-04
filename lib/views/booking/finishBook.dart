@@ -1,12 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'book_detail.dart';
 import 'book_detail2.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../models/sidemenu.dart';
 
 class FinishBooking extends StatefulWidget {
   const FinishBooking({Key? key}) : super(key: key);

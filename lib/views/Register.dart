@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, unused_element, avoid_print, duplicate_ignore, dead_code
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/views/inputmentor.dart';
@@ -341,7 +339,7 @@ class _Register extends State<PageOne> {
                     }
                     print('สมัครสมาชิก');
 
-                    await CheckRegister(
+                    await checkRegister(
                         username, password, name, surname, picdate, context);
 
                     // Navigator.pushNamedAndRemoveUntil(context,
@@ -370,7 +368,7 @@ class _Register extends State<PageOne> {
   }
 }
 
-Future CheckRegister(
+Future checkRegister(
     username, password, name, surname, picdate, context) async {
   EasyLoading.show(status: 'loading...');
 
@@ -387,7 +385,7 @@ Future CheckRegister(
     }),
   )
       .then((req) async {
-    if (req.statusCode == 200) {
+    if (req.statusCode == 201) {
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);
       prefs.setString('token', data['token']);

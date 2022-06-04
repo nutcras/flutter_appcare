@@ -3,12 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/lern/profile.txt';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../configs/config.dart';
 import '../views/login.dart';
 import 'package:http/http.dart' as http;
-
 import '../views/profile.dart';
 
 class SideMenu extends StatefulWidget {
@@ -69,7 +67,8 @@ class _SideMenuState extends State<SideMenu> {
                     Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                            builder: (BuildContext context) => Profile(data: data)));
+                            builder: (BuildContext context) =>
+                                Profile(data: data)));
                   }),
                   child: Row(
                     children: [
