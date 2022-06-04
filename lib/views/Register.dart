@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/page1.dart';
+import 'package:flutter_appcare/views/inputmentor.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -394,7 +394,7 @@ Future CheckRegister(
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Page1()),
+          MaterialPageRoute(builder: (context) => InputMentor()),
           (Route<dynamic> route) => false);
     } else {
       print('error');

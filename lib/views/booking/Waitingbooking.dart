@@ -120,7 +120,7 @@ class _WaitingBookingState extends State<WaitingBooking> {
           ),
         ),
       ),
-      //หน้าปุ่มsidemenu
+      drawer: SideMenu(), //หน้าปุ่มsidemenu
     );
   }
 }

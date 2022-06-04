@@ -9,7 +9,7 @@ import '../configs/config.dart';
 import '../views/login.dart';
 import 'package:http/http.dart' as http;
 
-import '../views/profile1.dart';
+import '../views/profile.dart';
 
 class SideMenu extends StatefulWidget {
   SideMenu({
