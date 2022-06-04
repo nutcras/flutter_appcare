@@ -1,12 +1,15 @@
 // ignore: file_names
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_appcare/configs/config.dart';
 import 'package:flutter_appcare/views/Waitingbooking.dart';
-import 'package:flutter_appcare/views/book_detail.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectBooking extends StatefulWidget {
   const SelectBooking({Key? key}) : super(key: key);
-
   @override
   State<SelectBooking> createState() => _SelectBookingState();
 }
@@ -30,8 +33,8 @@ class _SelectBookingState extends State<SelectBooking> {
       if (date != null) {
         setState(() {
           datenow = date;
-          picdate.text = DateFormat("dd/MM/yyyy").format(date);
-          DateFormat("dd/MM/yyyy").format(date);
+          picdate.text = DateFormat("yyyy-MM-dd").format(date);
+          DateFormat("yyyy-MM-dd").format(date);
         });
       }
     }
@@ -57,8 +60,8 @@ class _SelectBookingState extends State<SelectBooking> {
       if (date != null) {
         setState(() {
           datenow = date;
-          picdate2.text = DateFormat("dd/MM/yyyy").format(date);
-          DateFormat("dd/MM/yyyy").format(date);
+          picdate2.text = DateFormat("yyyy-MM-dd").format(date);
+          DateFormat("yyyy-MM-dd").format(date);
         });
       }
     }
@@ -183,19 +186,46 @@ class _SelectBookingState extends State<SelectBooking> {
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
+                SizedBox(height: 15),
                 ElevatedButton(
                   onPressed: (() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                WaitingBooking()));
+                    sendtimebook(pictime.text, picdate.text, pictime2.text,
+                        picdate2.text, context);
                   }),
-                  child: null,
+                  child: Text('ยืนยันการจอง'),
                 )
               ],
             )),
       ),
     );
   }
+}
+
+Future sendtimebook(pictime, picdate, pictime2, picdate2, context) async {
+  final prefs =
+      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
+  int? idUser = prefs.getInt('idm');
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/booking');
+  http
+      .post(
+    url,
+    headers: headers,
+    body: jsonEncode({
+      "start_time": picdate,
+      "end_time": picdate2,
+      "cust_id": idUser,
+      "bstatus": 71,
+    }),
+  )
+      .then((req) async {
+    if (req.statusCode == 201) {
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const WaitingBooking()),
+          (Route<dynamic> route) => false);
+    } else {
+      print('error');
+      EasyLoading.showError('Failed with Error');
+    }
+  });
 }

@@ -74,7 +74,7 @@ class _SideMenuState extends State<SideMenu> {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundImage: AssetImage(''),
+                        // backgroundImage: AssetImage(''),
                         backgroundColor: Colors.white,
                         radius: 40,
                       ),

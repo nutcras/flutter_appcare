@@ -85,7 +85,7 @@ class _ProfileState extends State<Profile> {
 
 Future senddata(
     dynamic idUser, String title, String fname, String lname) async {
-  Uri url = Uri.parse('http://206.189.02.71:3200/api/customer/$idUser');
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/$idUser');
   http
       .post(
     url,
