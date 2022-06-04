@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/models/sidemenu.dart';
+import '../models/sidemenu.dart';
 import 'booking/cancleBook.dart';
 import 'booking/finishBook.dart';
 
