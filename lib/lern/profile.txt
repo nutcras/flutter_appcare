@@ -27,7 +27,7 @@ class _ProfilesState extends State<Profiles> {
           const Center(
             child: CircleAvatar(
               radius: 80,
-              backgroundImage: AssetImage('assets/images/profile.jpg'),
+              backgroundImage: AssetImage(''),
               backgroundColor: Color.fromARGB(255, 45, 134, 156),
             ),
           ),
@@ -70,7 +70,7 @@ class _ProfilesState extends State<Profiles> {
                   color: const Color.fromARGB(255, 150, 217, 234),
                   padding: const EdgeInsets.all(8.0),
                   child: const Text(
-                    'โรคเบาหวาน',
+                    '',
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
@@ -82,7 +82,7 @@ class _ProfilesState extends State<Profiles> {
                   color: const Color.fromARGB(255, 150, 217, 234),
                   padding: const EdgeInsets.all(8.0),
                   child: const Text(
-                    'โรคหัวใจ',
+                    '',
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
@@ -108,7 +108,7 @@ class _ProfilesState extends State<Profiles> {
                   color: const Color.fromARGB(255, 150, 217, 234),
                   padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
                   child: const Text(
-                    'ผู้ป่วยติดเตียง',
+                    '',
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
@@ -124,12 +124,12 @@ class _ProfilesState extends State<Profiles> {
               Text('${widget.data['phone']}',
                   style: const TextStyle(fontSize: 17)),
               const SizedBox(width: 105),
-              TextButton(
-                  onPressed: () {
-                    senddata('${widget.data['idc']}');
-                  },
-                  child: const Text('แก้ไข',
-                      style: TextStyle(fontSize: 17, color: Colors.red)))
+              // TextButton(
+              //     onPressed: () {
+              //       senddata('${widget.data['idc']}');
+              //     },
+              //     child: const Text('แก้ไข',
+              //         style: TextStyle(fontSize: 17, color: Colors.red)))
             ],
           ),
           Row(
@@ -140,12 +140,12 @@ class _ProfilesState extends State<Profiles> {
               Text('''${widget.data['address']}''',
                   style: const TextStyle(fontSize: 17)),
               const SizedBox(width: 17),
-              TextButton(
-                  onPressed: () {
-                    senddata('${widget.data['idc']}');
-                  },
-                  child: const Text('แก้ไข',
-                      style: TextStyle(fontSize: 17, color: Colors.red)))
+              // TextButton(
+              //     onPressed: () {
+              //       senddata('${widget.data['idc']}');
+              //     },
+              //     child: const Text('แก้ไข',
+              //         style: TextStyle(fontSize: 17, color: Colors.red)))
             ],
           ),
           const SizedBox(height: 10),
