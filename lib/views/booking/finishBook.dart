@@ -1,21 +1,21 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/book_detail.dart';
-import 'package:flutter_appcare/views/book_detail2.dart';
+import 'book_detail.dart';
+import 'book_detail2.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/sidemenu.dart';
+import '../../models/sidemenu.dart';
 
-class CancleBooking extends StatefulWidget {
-  const CancleBooking({Key? key}) : super(key: key);
+class FinishBooking extends StatefulWidget {
+  const FinishBooking({Key? key}) : super(key: key);
 
   @override
-  State<CancleBooking> createState() => _CancleBookingState();
+  State<FinishBooking> createState() => _FinishBookingState();
 }
 
-class _CancleBookingState extends State<CancleBooking> {
+class _FinishBookingState extends State<FinishBooking> {
   dynamic data;
 
   @override
@@ -38,7 +38,7 @@ class _CancleBookingState extends State<CancleBooking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('การนัดหมายที่ยกเลิก'),
+        title: const Text('การนัดหมายที่สำเร็จ'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SizedBox(
@@ -61,8 +61,8 @@ class _CancleBookingState extends State<CancleBooking> {
               },
               child: Card(
                 elevation: 10,
-                color: Color.fromARGB(255, 186, 198, 201),
-                shadowColor: Color.fromARGB(255, 99, 108, 110),
+                color: Color.fromARGB(255, 111, 210, 174),
+                shadowColor: Color.fromARGB(255, 148, 148, 148),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -120,14 +120,14 @@ class _CancleBookingState extends State<CancleBooking> {
             ),
           ),
         ),
-      ), //หน้าปุ่มsidemenu
+      ),
     );
   }
 }
 
 Future<dynamic> getdata(dynamic idUser) async {
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/booking/cust/74/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+      'http://206.189.92.71:3200/api/booking/cust/73/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   return await http
       .get(
     url,

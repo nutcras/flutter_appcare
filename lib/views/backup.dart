@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/models/sidemenu.dart';
-import 'cancleBook.dart';
-import 'finishBook.dart';
+import 'booking/cancleBook.dart';
+import 'booking/finishBook.dart';
 
 class BackUp extends StatelessWidget {
   const BackUp({Key? key}) : super(key: key);

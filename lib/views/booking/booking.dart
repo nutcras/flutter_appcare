@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/book_detail.dart';
+import 'book_detail.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/sidemenu.dart';
-import 'Waitingbooking.dart';
+import '../../models/sidemenu.dart';
+import '../Waitingbooking.dart';
 
 class Booking extends StatefulWidget {
   const Booking({Key? key}) : super(key: key);

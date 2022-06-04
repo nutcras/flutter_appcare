@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/views/Register.dart';
 import 'package:flutter_appcare/views/backup.dart';
-import 'package:flutter_appcare/views/booking.dart';
+import 'package:flutter_appcare/views/booking/booking.dart';
 import 'package:flutter_appcare/views/page1.dart';
 import 'package:flutter_appcare/views/Map.dart';
 
