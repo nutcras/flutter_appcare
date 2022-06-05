@@ -32,7 +32,7 @@ class BackUp extends StatelessWidget {
                     backgroundColor: Color.fromARGB(255, 39, 110, 168),
                     primary: Colors.white),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               TextButton(
                 onPressed: (() {
                   Navigator.push(
@@ -41,7 +41,7 @@ class BackUp extends StatelessWidget {
                           builder: (BuildContext context) =>
                               const CancleBooking()));
                 }),
-                child: Text(
+                child: const Text(
                   'ดูประวัติที่ยกเลิก',
                 ),
                 style: TextButton.styleFrom(

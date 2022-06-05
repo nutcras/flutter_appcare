@@ -39,7 +39,7 @@ class _ProfileState extends State<Profile> {
                   '${widget.data['title']} ${widget.data['fname']}  ${widget.data['lname']}',
               press: () {
                 // senddata('${widget.data['idc']}', '${widget.data['title']}',
-                //     '${widget.data['fname']}', '${widget.data['lname']}'); อันนี้คือส่งข้อมูลอันเดียว
+                //'${widget.data['fname']}', '${widget.data['lname']}'); อันนี้คือส่งข้อมูลอันเดียว
               }),
           ProfileMenu(
             text: '${widget.data['birtday']}',

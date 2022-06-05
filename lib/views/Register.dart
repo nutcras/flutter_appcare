@@ -98,7 +98,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'Usename',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you Usename for display',
+                    helperText: 'Type you Usename for display',
                     hintText: 'Usename',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -139,7 +139,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'password',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you password more 6 Charactor',
+                    helperText: 'Type you password more 6 Charactor',
                     hintText: 'password',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -180,7 +180,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'confirm password',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep confirm password for display',
+                    helperText: 'Type confirm password for display',
                     hintText: 'confirm password',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -221,7 +221,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'name',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you name for display',
+                    helperText: 'Type you name for display',
                     hintText: 'name',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -262,7 +262,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'surname',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you surname for display',
+                    helperText: 'Type you surname for display',
                     hintText: 'surname',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -307,7 +307,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'date',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you date for display',
+                    helperText: 'Type you date for display',
                     hintText: 'date',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),

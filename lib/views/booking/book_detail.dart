@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appcare/configs/api.dart';
 import 'package:intl/intl.dart';
 
 class Bookdetail extends StatefulWidget {
@@ -139,7 +140,9 @@ class _BookdetailState extends State<Bookdetail> {
                 primary: const Color.fromARGB(255, 255, 255, 255),
                 textStyle: const TextStyle(fontSize: 20),
               ),
-              onPressed: () {},
+              onPressed: () {
+                removeBooking('${widget.data['idb']}');
+              },
               child: const Text('ยกเลิกนัด'),
             ),
           ],
