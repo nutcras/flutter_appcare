@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_constructors, unused_element, avoid_print, duplicate_ignore, dead_code
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/page1.dart';
+import 'package:flutter_appcare/views/inputmentor.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -100,7 +98,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'Usename',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you Usename for display',
+                    helperText: 'Type you Usename for display',
                     hintText: 'Usename',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -141,7 +139,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'password',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you password more 6 Charactor',
+                    helperText: 'Type you password more 6 Charactor',
                     hintText: 'password',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -182,7 +180,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'confirm password',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep confirm password for display',
+                    helperText: 'Type confirm password for display',
                     hintText: 'confirm password',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -223,7 +221,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'name',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you name for display',
+                    helperText: 'Type you name for display',
                     hintText: 'name',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -264,7 +262,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'surname',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you surname for display',
+                    helperText: 'Type you surname for display',
                     hintText: 'surname',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -309,7 +307,7 @@ class _Register extends State<PageOne> {
                   decoration: InputDecoration(
                     labelText: 'date',
                     labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Tyep you date for display',
+                    helperText: 'Type you date for display',
                     hintText: 'date',
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -341,7 +339,7 @@ class _Register extends State<PageOne> {
                     }
                     print('สมัครสมาชิก');
 
-                    await CheckRegister(
+                    await checkRegister(
                         username, password, name, surname, picdate, context);
 
                     // Navigator.pushNamedAndRemoveUntil(context,
@@ -370,7 +368,7 @@ class _Register extends State<PageOne> {
   }
 }
 
-Future CheckRegister(
+Future checkRegister(
     username, password, name, surname, picdate, context) async {
   EasyLoading.show(status: 'loading...');
 
@@ -387,14 +385,14 @@ Future CheckRegister(
     }),
   )
       .then((req) async {
-    if (req.statusCode == 200) {
+    if (req.statusCode == 201) {
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);
       prefs.setString('token', data['token']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Page1()),
+          MaterialPageRoute(builder: (context) => InputMentor()),
           (Route<dynamic> route) => false);
     } else {
       print('error');

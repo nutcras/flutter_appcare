@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appcare/configs/config.dart';
 import 'package:flutter_appcare/views/carddetail.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/sidemenu.dart';
 
-class Page1 extends StatefulWidget {
-  const Page1({Key? key, data}) : super(key: key);
+class InputMentor extends StatefulWidget {
+  const InputMentor({Key? key, data}) : super(key: key);
   @override
-  State<Page1> createState() => _Page1State();
+  State<InputMentor> createState() => _InputMentorState();
 }
 
-class _Page1State extends State<Page1> {
+class _InputMentorState extends State<InputMentor> {
   dynamic data;
   @override
   void initState() {

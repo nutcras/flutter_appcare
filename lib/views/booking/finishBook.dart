@@ -1,21 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/book_detail.dart';
+import 'book_detail2.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/sidemenu.dart';
-import 'Waitingbooking.dart';
 
-class Booking extends StatefulWidget {
-  const Booking({Key? key}) : super(key: key);
+class FinishBooking extends StatefulWidget {
+  const FinishBooking({Key? key}) : super(key: key);
 
   @override
-  State<Booking> createState() => _BookingState();
+  State<FinishBooking> createState() => _FinishBookingState();
 }
 
-class _BookingState extends State<Booking> {
+class _FinishBookingState extends State<FinishBooking> {
   dynamic data;
 
   @override
@@ -38,35 +36,8 @@ class _BookingState extends State<Booking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('นัดหมาย'),
+        title: const Text('การนัดหมายที่สำเร็จ'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
-        // leading: GestureDetector(
-        //   onTap: () {
-        //     Navigator.push(
-        //         context,
-        //         MaterialPageRoute<void>(
-        //             builder: (BuildContext context) => WaitingBooking()));
-        //   },
-        //   child: Icon(
-        //     Icons.timelapse_sharp, // add custom icons also
-        //   ),
-        // ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.timelapse_sharp,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                      builder: (BuildContext context) => WaitingBooking()));
-
-              // do something
-            },
-          )
-        ],
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -84,12 +55,12 @@ class _BookingState extends State<Booking> {
                     context,
                     MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            Bookdetail(data: data[i])));
+                            Bookdetail2(data: data[i])));
               },
               child: Card(
                 elevation: 10,
-                color: const Color.fromARGB(255, 150, 217, 234),
-                shadowColor: const Color.fromARGB(255, 10, 91, 111),
+                color: Color.fromARGB(255, 111, 210, 174),
+                shadowColor: Color.fromARGB(255, 148, 148, 148),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -148,14 +119,13 @@ class _BookingState extends State<Booking> {
           ),
         ),
       ),
-      drawer: SideMenu(), //หน้าปุ่มsidemenu
     );
   }
 }
 
 Future<dynamic> getdata(dynamic idUser) async {
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/booking/cust/72/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+      'http://206.189.92.71:3200/api/booking/cust/73/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   return await http
       .get(
     url,

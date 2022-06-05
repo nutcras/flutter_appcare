@@ -1,20 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/book_detail.dart';
+import 'book_detail2.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/sidemenu.dart';
 
-class FinishBooking extends StatefulWidget {
-  const FinishBooking({Key? key}) : super(key: key);
+class CancleBooking extends StatefulWidget {
+  const CancleBooking({Key? key}) : super(key: key);
 
   @override
-  State<FinishBooking> createState() => _FinishBookingState();
+  State<CancleBooking> createState() => _CancleBookingState();
 }
 
-class _FinishBookingState extends State<FinishBooking> {
+class _CancleBookingState extends State<CancleBooking> {
   dynamic data;
 
   @override
@@ -37,7 +36,7 @@ class _FinishBookingState extends State<FinishBooking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('นัดหมาย'),
+        title: const Text('การนัดหมายที่ยกเลิก'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SizedBox(
@@ -56,12 +55,12 @@ class _FinishBookingState extends State<FinishBooking> {
                     context,
                     MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            Bookdetail(data: data[i])));
+                            Bookdetail2(data: data[i])));
               },
               child: Card(
                 elevation: 10,
-                color: const Color.fromARGB(255, 150, 217, 234),
-                shadowColor: const Color.fromARGB(255, 10, 91, 111),
+                color: Color.fromARGB(255, 186, 198, 201),
+                shadowColor: Color.fromARGB(255, 99, 108, 110),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -119,15 +118,14 @@ class _FinishBookingState extends State<FinishBooking> {
             ),
           ),
         ),
-      ),
-      drawer: SideMenu(), //หน้าปุ่มsidemenu
+      ), //หน้าปุ่มsidemenu
     );
   }
 }
 
 Future<dynamic> getdata(dynamic idUser) async {
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/FinishBooking/cust/73/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+      'http://206.189.92.71:3200/api/booking/cust/74/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   return await http
       .get(
     url,

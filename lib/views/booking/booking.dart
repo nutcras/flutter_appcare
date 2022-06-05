@@ -1,20 +1,21 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/book_detail.dart';
+import 'book_detail.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/sidemenu.dart';
+import '../../models/sidemenu.dart';
+import 'Waitingbooking.dart';
 
-class CancleBooking extends StatefulWidget {
-  const CancleBooking({Key? key}) : super(key: key);
+class Booking extends StatefulWidget {
+  const Booking({Key? key}) : super(key: key);
 
   @override
-  State<CancleBooking> createState() => _CancleBookingState();
+  State<Booking> createState() => _BookingState();
 }
 
-class _CancleBookingState extends State<CancleBooking> {
+class _BookingState extends State<Booking> {
   dynamic data;
 
   @override
@@ -39,6 +40,33 @@ class _CancleBookingState extends State<CancleBooking> {
       appBar: AppBar(
         title: const Text('นัดหมาย'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
+        // leading: GestureDetector(
+        //   onTap: () {
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute<void>(
+        //             builder: (BuildContext context) => WaitingBooking()));
+        //   },
+        //   child: Icon(
+        //     Icons.timelapse_sharp, // add custom icons also
+        //   ),
+        // ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.timelapse_sharp,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                      builder: (BuildContext context) => WaitingBooking()));
+
+              // do something
+            },
+          )
+        ],
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -127,7 +155,7 @@ class _CancleBookingState extends State<CancleBooking> {
 
 Future<dynamic> getdata(dynamic idUser) async {
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/CancleBooking/cust/74/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+      'http://206.189.92.71:3200/api/booking/cust/72/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   return await http
       .get(
     url,

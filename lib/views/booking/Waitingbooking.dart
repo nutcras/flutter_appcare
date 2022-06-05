@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/book_detail.dart';
+import 'book_detail.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/sidemenu.dart';
+import '../../models/sidemenu.dart';
 
 class WaitingBooking extends StatefulWidget {
   const WaitingBooking({Key? key}) : super(key: key);
@@ -60,7 +60,7 @@ class _WaitingBookingState extends State<WaitingBooking> {
               },
               child: Card(
                 elevation: 10,
-                color: const Color.fromARGB(255, 150, 217, 234),
+                color: Color.fromARGB(255, 190, 215, 222),
                 shadowColor: const Color.fromARGB(255, 10, 91, 111),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -120,14 +120,14 @@ class _WaitingBookingState extends State<WaitingBooking> {
           ),
         ),
       ),
-      //หน้าปุ่มsidemenu
+      drawer: SideMenu(), //หน้าปุ่มsidemenu
     );
   }
 }
 
 Future<dynamic> getdata(dynamic idUser) async {
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/WaitingBooking/cust/71/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+      'http://206.189.92.71:3200/api/booking/cust/71/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   return await http
       .get(
     url,

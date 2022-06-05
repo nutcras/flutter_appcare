@@ -1,157 +1,62 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/login.dart';
+import 'package:flutter_appcare/models/profilemenu.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'Login.dart';
 
-class Profiles extends StatefulWidget {
-  const Profiles({Key? key, required this.data}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key, required this.data}) : super(key: key);
   final dynamic data;
   @override
-  State<Profiles> createState() => _ProfilesState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _ProfilesState extends State<Profiles> {
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ข้อมูลส่วนตัว'),
+        title: Text('ข้อมูลส่วนตัว'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
-          const Center(
-            child: CircleAvatar(
-              radius: 80,
-              backgroundImage: AssetImage('assets/images/profile.jpg'),
-              backgroundColor: Color.fromARGB(255, 45, 134, 156),
-            ),
-          ),
-          const SizedBox(height: 20),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Column(
-              children: [
-                Container(
-                  color: const Color.fromARGB(255, 150, 217, 234),
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        '${widget.data['title']} ${widget.data['fname']} ${widget.data['lname']}',
-                        // '${data['title']} ${data['fname']} ${data['lname']}',
-                        //สำหรับใส่ข้อมูลจากdatabase
-                        style: const TextStyle(fontSize: 24),
-                      ),
-                      Text(
-                        'อายุ : 22    เพศ : ${widget.data['title']}',
-                        //ใส่อายุ
-                        style: const TextStyle(fontSize: 24),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
+          SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  color: const Color.fromARGB(255, 150, 217, 234),
-                  padding: const EdgeInsets.all(8.0),
-                  child: const Text(
-                    'โรคเบาหวาน',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  color: const Color.fromARGB(255, 150, 217, 234),
-                  padding: const EdgeInsets.all(8.0),
-                  child: const Text(
-                    'โรคหัวใจ',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Row(
-            children: const [
-              SizedBox(width: 80),
-              Text('ลักษณะผู้ป่วย', style: TextStyle(fontSize: 20)),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const SizedBox(width: 80),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  color: const Color.fromARGB(255, 150, 217, 234),
-                  padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
-                  child: const Text(
-                    'ผู้ป่วยติดเตียง',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
+              CircleAvatar(
+                radius: 60,
+                // backgroundImage: AssetImage(''),
+                backgroundColor: const Color.fromARGB(255, 45, 134, 156),
               ),
             ],
           ),
-          const SizedBox(height: 15),
-          Row(
-            children: [
-              const SizedBox(width: 80),
-              const Icon(Icons.phone),
-              const SizedBox(width: 10),
-              Text('${widget.data['phone']}',
-                  style: const TextStyle(fontSize: 17)),
-              const SizedBox(width: 105),
-              TextButton(
-                  onPressed: () {
-                    senddata('${widget.data['idc']}');
-                  },
-                  child: const Text('แก้ไข',
-                      style: TextStyle(fontSize: 17, color: Colors.red)))
-            ],
+          SizedBox(height: 20),
+          ProfileMenu(
+              text:
+                  '${widget.data['title']} ${widget.data['fname']}  ${widget.data['lname']}',
+              press: () {
+                // senddata('${widget.data['idc']}', '${widget.data['title']}',
+                //'${widget.data['fname']}', '${widget.data['lname']}'); อันนี้คือส่งข้อมูลอันเดียว
+              }),
+          ProfileMenu(
+            text: '${widget.data['birtday']}',
+            press: () {},
           ),
-          Row(
-            children: [
-              const SizedBox(width: 80),
-              const Icon(Icons.phone),
-              const SizedBox(width: 10),
-              Text('''${widget.data['address']}''',
-                  style: const TextStyle(fontSize: 17)),
-              const SizedBox(width: 17),
-              TextButton(
-                  onPressed: () {
-                    senddata('${widget.data['idc']}');
-                  },
-                  child: const Text('แก้ไข',
-                      style: TextStyle(fontSize: 17, color: Colors.red)))
-            ],
+          ProfileMenu(
+            text: '${widget.data['phone']}',
+            press: () {},
           ),
-          const SizedBox(height: 10),
+          ProfileMenu(
+            text: '${widget.data['address']}',
+            press: () {},
+          ),
+          SizedBox(height: 20),
           TextButton(
             style: TextButton.styleFrom(
-              padding: const EdgeInsets.fromLTRB(120, 20, 120, 20),
+              padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -178,9 +83,15 @@ class _ProfilesState extends State<Profiles> {
   }
 }
 
-Future senddata(dynamic idUser) async {
-  Uri url = Uri.parse('http://206.189.02.71:3200/api/customer/$idUser');
-  return await http.post(url).then((req) async {
+Future senddata(
+    dynamic idUser, String title, String fname, String lname) async {
+  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/$idUser');
+  http
+      .post(
+    url,
+    body: jsonEncode({"title": title, "fname": fname, "lname": lname}),
+  )
+      .then((req) async {
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;

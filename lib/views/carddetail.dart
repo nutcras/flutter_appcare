@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/SelectBook.dart';
+import 'package:flutter_appcare/views/booking/SelectBook.dart';
 
 class Carddetail extends StatefulWidget {
   const Carddetail({Key? key, required this.data}) : super(key: key);
