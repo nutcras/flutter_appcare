@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../configs/api.dart';
+import 'package:flutter_appcare/models/textFormFieldModel';
 
 class PageOne extends StatefulWidget {
   const PageOne({Key? key}) : super(key: key);
@@ -74,43 +75,49 @@ class _Register extends State<PageOne> {
                 SizedBox(
                   height: 20,
                 ),
-                TextFormField(
+                // TextFormField(
+                //   controller: username,
+                //   validator: (value) {
+                //     if (value!.isEmpty) {
+                //       return 'Please fill you Usename in the blank';
+                //     } else {
+                //       return null;
+                //     }
+                //   },
+                //   style: TextStyle(
+                //       color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
+                //   keyboardType: TextInputType.text,
+                //   onChanged: (value) {
+                //     print(value);
+                //   },
+                //   // ignore: prefer_const_constructors
+                //   decoration: InputDecoration(
+                //     labelText: 'Usename',
+                //     labelStyle: TextStyle(color: Colors.white),
+                //     helperText: 'Type you Usename for display',
+                //     hintText: 'Usename',
+                //     hintStyle:
+                //         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                //     enabledBorder: OutlineInputBorder(
+                //       borderSide:
+                //           BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
+                //       borderRadius: BorderRadius.all(Radius.circular(50)),
+                //     ),
+                //     errorBorder: OutlineInputBorder(
+                //         borderSide:
+                //             BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
+                //         borderRadius: BorderRadius.all(Radius.circular(50))),
+                //     focusedBorder: OutlineInputBorder(
+                //         borderSide: BorderSide(
+                //             color: Color.fromARGB(255, 255, 255, 255)),
+                //         borderRadius: BorderRadius.all(Radius.circular(50))),
+                //   ),
+                // ),
+                TextFormFieldModel(
                   controller: username,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you Usename in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'Usename',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you Usename for display',
-                    hintText: 'Usename',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
+                  labelText: 'username',
+                  hintText: 'username',
+                  textError: 'Pleas key value',
                 ),
                 SizedBox(
                   height: 20,
@@ -153,7 +160,7 @@ class _Register extends State<PageOne> {
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -165,7 +172,7 @@ class _Register extends State<PageOne> {
                       return null;
                     }
                   },
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
