@@ -141,7 +141,7 @@ class _BookdetailState extends State<Bookdetail> {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
-                removeBooking('${widget.data['idb']}');
+                removeBooking('${widget.data['idb']}', context);
               },
               child: const Text('ยกเลิกนัด'),
             ),

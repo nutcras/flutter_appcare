@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/booking/SelectBook.dart';
+import 'package:flutter_appcare/views/booking/selectBook.dart';
 
 class Carddetail extends StatefulWidget {
   const Carddetail({Key? key, required this.data}) : super(key: key);
@@ -16,8 +16,8 @@ class _CarddetailState extends State<Carddetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ข้อมูลพนักงงาน'),
-        backgroundColor: Color.fromARGB(255, 45, 134, 156),
+        title: const Text('ข้อมูลพนักงงาน'),
+        backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SafeArea(
         child: Column(

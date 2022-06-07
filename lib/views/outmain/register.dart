@@ -1,10 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/inputmentor.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-import '../configs/config.dart';
+import '../../configs/api.dart';
 
 class PageOne extends StatefulWidget {
   const PageOne({Key? key}) : super(key: key);
@@ -366,37 +361,4 @@ class _Register extends State<PageOne> {
       ),
     );
   }
-}
-
-Future checkRegister(
-    username, password, name, surname, picdate, context) async {
-  EasyLoading.show(status: 'loading...');
-
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer');
-  http
-      .post(
-    url,
-    headers: headers,
-    body: jsonEncode({
-      "username": username,
-      "password": password,
-      "fname": name,
-      "lname": surname,
-    }),
-  )
-      .then((req) async {
-    if (req.statusCode == 201) {
-      final prefs = await SharedPreferences.getInstance();
-      var data = jsonDecode(req.body);
-      prefs.setString('token', data['token']);
-      headers?['Authorization'] = "bearer ${data['token']}";
-      EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => InputMentor()),
-          (Route<dynamic> route) => false);
-    } else {
-      print('error');
-      EasyLoading.showError('Failed with Error');
-    }
-  });
 }

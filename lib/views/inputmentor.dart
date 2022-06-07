@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/configs/config.dart';
+import 'package:flutter_appcare/configs/api.dart';
 import 'package:flutter_appcare/views/carddetail.dart';
-import 'package:http/http.dart' as http;
 import '../models/sidemenu.dart';
 
 class InputMentor extends StatefulWidget {
@@ -21,7 +18,7 @@ class _InputMentorState extends State<InputMentor> {
   }
 
   startApi() async {
-    var item = await getdata();
+    var item = await inputmentor();
     setState(() {
       data = item;
     });
@@ -113,21 +110,4 @@ class _InputMentorState extends State<InputMentor> {
       drawer: SideMenu(),
     );
   }
-}
-
-Future<dynamic> getdata() async {
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/mentor');
-  return await http
-      .get(
-    url,
-    headers: headers,
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
 }

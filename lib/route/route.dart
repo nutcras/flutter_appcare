@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/Register.dart';
-import 'package:flutter_appcare/views/backup.dart';
+import 'package:flutter_appcare/views/outmain/register.dart';
+import 'package:flutter_appcare/views/booking/backup.dart';
 import 'package:flutter_appcare/views/booking/booking.dart';
 import 'package:flutter_appcare/views/inputmentor.dart';
-import 'package:flutter_appcare/views/Map.dart';
+import 'package:flutter_appcare/lern/Map.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   '/PageOne': (context) => const PageOne(),

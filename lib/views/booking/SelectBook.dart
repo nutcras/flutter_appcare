@@ -1,12 +1,6 @@
-// ignore: file_names
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/configs/config.dart';
-import 'Waitingbooking.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import '../../configs/api.dart';
 import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectBooking extends StatefulWidget {
   const SelectBooking({Key? key}) : super(key: key);
@@ -85,7 +79,7 @@ class _SelectBookingState extends State<SelectBooking> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Container(
+        child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
@@ -186,46 +180,17 @@ class _SelectBookingState extends State<SelectBooking> {
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 ElevatedButton(
                   onPressed: (() {
                     sendtimebook(pictime.text, picdate.text, pictime2.text,
                         picdate2.text, context);
                   }),
-                  child: Text('ยืนยันการจอง'),
+                  child: const Text('ยืนยันการจอง'),
                 )
               ],
             )),
       ),
     );
   }
-}
-
-Future sendtimebook(pictime, picdate, pictime2, picdate2, context) async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? idUser = prefs.getInt('idm');
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/booking');
-  http
-      .post(
-    url,
-    headers: headers,
-    body: jsonEncode({
-      "start_time": picdate,
-      "end_time": picdate2,
-      "cust_id": idUser,
-      "bstatus": 71,
-    }),
-  )
-      .then((req) async {
-    if (req.statusCode == 201) {
-      EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const WaitingBooking()),
-          (Route<dynamic> route) => false);
-    } else {
-      print('error');
-      EasyLoading.showError('Failed with Error');
-    }
-  });
 }

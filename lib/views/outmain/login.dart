@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter_appcare/configs/config.dart';
-import 'package:flutter_appcare/views/inputmentor.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../configs/api.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -193,31 +189,4 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ));
   }
-}
-
-Future checkLogin(String username, String password, context) async {
-  EasyLoading.show(status: 'loading...');
-
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/login');
-  http
-      .post(
-    url,
-    headers: headers,
-    body: jsonEncode({"username": username, "password": password}),
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      final prefs = await SharedPreferences.getInstance();
-      var data = jsonDecode(req.body);
-      prefs.setString('token', data['token']);
-      prefs.setInt('idm', data['idc']);
-      headers?['Authorization'] = "bearer ${data['token']}";
-      EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const InputMentor()),
-          (Route<dynamic> route) => false);
-    } else {
-      EasyLoading.showError('Failed with Error');
-    }
-  });
 }
