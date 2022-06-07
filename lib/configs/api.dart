@@ -35,10 +35,8 @@ Future checkLogin(String username, String password, context) async {
   });
 }
 
-Future checkRegister(
-    username, password, name, surname, picdate, context) async {
+Future checkRegister(username, password, name, surname, context) async {
   EasyLoading.show(status: 'loading...');
-
   Uri url = Uri.parse('http://206.189.92.71:3200/api/customer');
   http
       .post(
@@ -48,7 +46,7 @@ Future checkRegister(
       "username": username,
       "password": password,
       "fname": name,
-      "lname": surname,
+      "lname": surname
     }),
   )
       .then((req) async {
@@ -59,10 +57,9 @@ Future checkRegister(
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => InputMentor()),
+          MaterialPageRoute(builder: (context) => const InputMentor()),
           (Route<dynamic> route) => false);
     } else {
-      print('error');
       EasyLoading.showError('Failed with Error');
     }
   });
@@ -78,13 +75,11 @@ Future<dynamic> removeBooking(dynamic idbook, context) async {
             "bstatus": 74,
           }))
       .then((req) async {
-    print(idbook);
     if (req.statusCode == 204) {
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context)
           .pushNamedAndRemoveUntil('/book', (Route<dynamic> route) => false);
     } else {
-      print(req.statusCode);
       EasyLoading.showError('Failed with Error');
     }
   });
@@ -171,7 +166,6 @@ Future sendtimebook(pictime, picdate, pictime2, picdate2, context) async {
           MaterialPageRoute(builder: (context) => const WaitingBooking()),
           (Route<dynamic> route) => false);
     } else {
-      print('error');
       EasyLoading.showError('Failed with Error');
     }
   });

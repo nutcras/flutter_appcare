@@ -11,12 +11,12 @@ class PageOne extends StatefulWidget {
 
 class _Register extends State<PageOne> {
   final _formkey = GlobalKey<FormState>();
-  TextEditingController? username,
-      password,
-      conpassword,
-      name,
-      surname,
-      picdate;
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController conpassword = TextEditingController();
+  TextEditingController picdate = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController surname = TextEditingController();
 
   DateTime? datenow = DateTime.now();
   @override
@@ -28,8 +28,6 @@ class _Register extends State<PageOne> {
           firstDate: DateTime(DateTime.now().year - 70),
           lastDate: DateTime(DateTime.now().year, DateTime.now().day));
 
-      print(date);
-
       if (date != null) {
         setState(() {
           datenow = date;
@@ -39,32 +37,21 @@ class _Register extends State<PageOne> {
       }
     }
 
-    void newtime() async {
-      TimeOfDay? time =
-          await showTimePicker(context: context, initialTime: TimeOfDay.now());
-      if (time != null) {
-        setState(() {
-          // picdate.text = date.toString();
-          // pictime.text = '${time.hour}:${time.minute}';
-        });
-      }
-    }
-
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 63, 217, 255),
+      backgroundColor: const Color.fromARGB(255, 63, 217, 255),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
             key: _formkey,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Column(children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
+                const Text(
                   'Register',
                   style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -72,30 +59,81 @@ class _Register extends State<PageOne> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: username,
+                  labelText: 'username',
+                  hintText: 'username',
+                  textError: 'Pleas key value',
+                  helperText: 'Type you Usename for display',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: password,
+                  labelText: 'password',
+                  hintText: 'password',
+                  textError: 'Pleae Key value',
+                  helperText: 'Type you password more 6 Charactor ',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: conpassword,
+                  labelText: 'Confirm Password',
+                  hintText: 'Confirm Passwod',
+                  textError: 'Confirm Password More 6 Charactor',
+                  helperText: 'Type confirm password for display',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: name,
+                  labelText: 'name',
+                  hintText: 'name',
+                  textError: 'Please fill you name in the blank',
+                  helperText: 'Type you name for display',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: surname,
+                  labelText: 'surname',
+                  hintText: 'surname',
+                  textError: 'Please fill you surname in the blank',
+                  helperText: 'Type you surname for display',
+                ),
+                const SizedBox(
+                  height: 15,
                 ),
                 // TextFormField(
-                //   controller: username,
+                //   controller: picdate,
                 //   validator: (value) {
                 //     if (value!.isEmpty) {
-                //       return 'Please fill you Usename in the blank';
+                //       return 'Please fill you date in the blank';
                 //     } else {
                 //       return null;
                 //     }
                 //   },
-                //   style: TextStyle(
+                //   readOnly: true,
+                //   onTap: () {
+                //     newDate();
+                //   },
+                //   style: const TextStyle(
                 //       color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
                 //   keyboardType: TextInputType.text,
-                //   onChanged: (value) {
-                //     print(value);
-                //   },
                 //   // ignore: prefer_const_constructors
                 //   decoration: InputDecoration(
-                //     labelText: 'Usename',
-                //     labelStyle: TextStyle(color: Colors.white),
-                //     helperText: 'Type you Usename for display',
-                //     hintText: 'Usename',
+                //     labelText: 'date',
+                //     labelStyle: const TextStyle(color: Colors.white),
+                //     helperText: 'Type you date for display',
+                //     hintText: 'date',
                 //     hintStyle:
                 //         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                 //     enabledBorder: OutlineInputBorder(
@@ -105,7 +143,7 @@ class _Register extends State<PageOne> {
                 //     ),
                 //     errorBorder: OutlineInputBorder(
                 //         borderSide:
-                //             BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
+                //             BorderSide(color: Color.fromARGB(255, 206, 6, 6)),
                 //         borderRadius: BorderRadius.all(Radius.circular(50))),
                 //     focusedBorder: OutlineInputBorder(
                 //         borderSide: BorderSide(
@@ -113,226 +151,8 @@ class _Register extends State<PageOne> {
                 //         borderRadius: BorderRadius.all(Radius.circular(50))),
                 //   ),
                 // ),
-                TextFormFieldModel(
-                  controller: username,
-                  labelText: 'username',
-                  hintText: 'username',
-                  textError: 'Pleas key value',
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: password,
-                  validator: (value) {
-                    if (value!.length < 6) {
-                      return 'Password More 6 Charactor';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'password',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you password more 6 Charactor',
-                    hintText: 'password',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: conpassword,
-                  validator: (value) {
-                    if (value!.length < 6) {
-                      return 'Confirm Password More 6 Charactor';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'confirm password',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type confirm password for display',
-                    hintText: 'confirm password',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: name,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you name in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'name',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you name for display',
-                    hintText: 'name',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: surname,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you surname in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'surname',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you surname for display',
-                    hintText: 'surname',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: picdate,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you date in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  readOnly: true,
-                  onTap: () {
-                    newDate();
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'date',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you date for display',
-                    hintText: 'date',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 206, 6, 6)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
                 SizedBox(
                   height: 10,
-                ),
-                SizedBox(
-                  height: 5,
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -341,8 +161,8 @@ class _Register extends State<PageOne> {
                     }
                     print('สมัครสมาชิก');
 
-                    await checkRegister(
-                        username, password, name, surname, picdate, context);
+                    await checkRegister(username.text, password.text, name.text,
+                        surname.text, context);
 
                     // Navigator.pushNamedAndRemoveUntil(context,
                     //     "/Page1", (Route<dynamic> route) => false);

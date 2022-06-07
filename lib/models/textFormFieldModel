@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
 class TextFormFieldModel extends StatelessWidget {
-  const TextFormFieldModel({
+  TextFormFieldModel({
     Key? key,
     @required this.labelText,
     this.hintText,
     @required this.controller,
     this.textError,
+    this.helperText,
   }) : super(key: key);
 
   final String? labelText;
   final String? hintText;
   final String? textError;
-  final String? pass;
+  final String? helperText;
   final TextEditingController? controller;
   
 
@@ -21,46 +22,42 @@ class TextFormFieldModel extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: (value){
-        if(pass == 1){
-          if (value!.length < 6) {
-                      return textError;
-                    } else {
-                      return null;
-                    }
-        }else{
           if (value!.isEmpty) {
                       return textError;
                     } else {
                       return null;
                     }
-        }
-      },
+        },
+      
       style: TextStyle(
         color: Colors.white,
         fontSize: 16,
       ),
-      onChanged: (value) {
-        print(value);
-        var v = value;
-      },
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
+        helperText: helperText,
         labelStyle: TextStyle(color: Colors.black),
         hintStyle: TextStyle(color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue, width: 1.5),
+          borderSide: BorderSide(color: Colors.blue),
           borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(50),
           ),
         ),
+        errorBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: Colors.pink),
+          borderRadius: BorderRadius.all(Radius.circular(50)),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.pink, width: 3),
+          borderSide: BorderSide(color: Colors.white),
           borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(50),
           ),
         ),
       ),
+      
     );
   }
 }
