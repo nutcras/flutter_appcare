@@ -6,7 +6,6 @@ class ProfileMenu extends StatelessWidget {
     required this.text,
     this.press,
   }) : super(key: key);
-
   final String text;
   final VoidCallback? press;
 
