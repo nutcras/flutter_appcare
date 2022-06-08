@@ -87,13 +87,13 @@ class _WaitingBookingState extends State<WaitingBooking> {
                                     style: const TextStyle(fontSize: 15),
                                   ),
                                   Text('เริ่ม : ' +
-                                      DateFormat('dd-mm-yy').format(
+                                      DateFormat('dd-mm-yy ' 'HH:mm').format(
                                           DateTime.parse(
-                                              '${data[i]['start_date']}'))),
+                                              '${data[i]['start_time']}'))),
                                   Text('สิ้นสุด : ' +
-                                      DateFormat('dd-mm-yy').format(
+                                      DateFormat('dd-mm-yy ' 'HH:mm').format(
                                           DateTime.parse(
-                                              '${data[i]['end_date']}'))),
+                                              '${data[i]['end_time']}'))),
                                   // Text(
                                   //   'เริ่ม : ' +
                                   //       DateFormat('dd-mm-yy').format(

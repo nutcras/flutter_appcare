@@ -154,10 +154,8 @@ Future sendtimebook(
     url,
     headers: headers,
     body: jsonEncode({
-      "start_date": picdate,
-      "end_date": picdate2,
-      "start_time": pictime,
-      "end_time": pictime2,
+      "start_time": picdate + ' ' + pictime,
+      "end_time": picdate2 + ' ' + pictime2,
       "men_id": idmentor,
       "cust_id": idUser,
       "bstatus": 71,
