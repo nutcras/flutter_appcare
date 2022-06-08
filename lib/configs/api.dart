@@ -128,7 +128,7 @@ Future<dynamic> getdata(dynamic idPage) async {
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? idUser = prefs.getInt('idm');
   Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/booking/cust/$idPage/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
+      'http://206.189.92.71:3200/api/booking/men/$idPage/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
   return await http
       .get(
     url,
@@ -143,7 +143,8 @@ Future<dynamic> getdata(dynamic idPage) async {
   });
 }
 
-Future sendtimebook(pictime, picdate, pictime2, picdate2, context) async {
+Future sendtimebook(
+    idmentor, pictime, picdate, pictime2, picdate2, context) async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? idUser = prefs.getInt('idm');
@@ -153,8 +154,11 @@ Future sendtimebook(pictime, picdate, pictime2, picdate2, context) async {
     url,
     headers: headers,
     body: jsonEncode({
-      "start_time": picdate,
-      "end_time": picdate2,
+      "start_date": picdate,
+      "end_date": picdate2,
+      "start_time": pictime,
+      "end_time": pictime2,
+      "men_id": idmentor,
       "cust_id": idUser,
       "bstatus": 71,
     }),

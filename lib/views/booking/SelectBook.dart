@@ -3,7 +3,8 @@ import '../../configs/api.dart';
 import 'package:intl/intl.dart';
 
 class SelectBooking extends StatefulWidget {
-  const SelectBooking({Key? key}) : super(key: key);
+  const SelectBooking({Key? key, required this.data}) : super(key: key);
+  final dynamic data;
   @override
   State<SelectBooking> createState() => _SelectBookingState();
 }
@@ -183,8 +184,8 @@ class _SelectBookingState extends State<SelectBooking> {
                 const SizedBox(height: 15),
                 ElevatedButton(
                   onPressed: (() {
-                    sendtimebook(pictime.text, picdate.text, pictime2.text,
-                        picdate2.text, context);
+                    sendtimebook(widget.data['idm'], pictime.text, picdate.text,
+                        pictime2.text, picdate2.text, context);
                   }),
                   child: const Text('ยืนยันการจอง'),
                 )
