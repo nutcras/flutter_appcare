@@ -11,7 +11,12 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  TextEditingController title = TextEditingController();
+  late TextEditingController title;
+
+  Future<void> getPersonalInfomation() async {
+    title = TextEditingController(text: widget.data['title']);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,11 +37,16 @@ class _ProfileState extends State<Profile> {
               ),
             ],
           ),
+          // ProfileMenu(
+          //   text: title.text,
+          //   press: () {},
+          // ),
           const SizedBox(height: 20),
           ProfileMenu(
-            text:
-                '${widget.data['title']} ${widget.data['fname']}  ${widget.data['lname']}',
+            text: '${widget.data['fname']}  ${widget.data['lname']}',
             press: () {
+              print(title.text);
+              // opendialog(widge context);
               // senddata('${widget.data['idc']}', '${widget.data['title']}',
               //'${widget.data['fname']}', '${widget.data['lname']}'); อันนี้คือส่งข้อมูลอันเดียว
             },
