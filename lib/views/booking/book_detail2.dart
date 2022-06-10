@@ -40,15 +40,15 @@ class _BookdetailState2 extends State<Bookdetail2> {
                 child: Column(children: [
               Text(
                 'เริ่ม : ' +
-                    DateFormat('dd-mm-yy KK:MM')
+                    DateFormat('dd-mm-yy' '  เวลา : HH:mm')
                         .format(DateTime.parse('${widget.data['start_time']}')),
                 style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
               Text(
-                'ถึง :  ' +
-                    DateFormat('dd-mm-yy KK:MM')
+                'ถึง  :  ' +
+                    DateFormat('dd-mm-yy  ' 'เวลา : HH:mm')
                         .format(DateTime.parse('${widget.data['end_time']}')),
                 style: const TextStyle(
                   fontSize: 16,

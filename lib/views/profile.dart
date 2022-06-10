@@ -1,9 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_appcare/models/dialog.dart';
 import 'package:flutter_appcare/models/profilemenu.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-import 'Login.dart';
+import 'outmain/login.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key, required this.data}) : super(key: key);
@@ -13,16 +12,20 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  late TextEditingController title;
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ข้อมูลส่วนตัว'),
+        title: const Text('ข้อมูลส่วนตัว'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: Column(
         children: [
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -33,17 +36,23 @@ class _ProfileState extends State<Profile> {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          // ProfileMenu(
+          //   text: title.text,
+          //   press: () {},
+          // ),
+          const SizedBox(height: 20),
           ProfileMenu(
-              text:
-                  '${widget.data['title']} ${widget.data['fname']}  ${widget.data['lname']}',
-              press: () {
-                // senddata('${widget.data['idc']}', '${widget.data['title']}',
-                //'${widget.data['fname']}', '${widget.data['lname']}'); อันนี้คือส่งข้อมูลอันเดียว
-              }),
+            text: '${widget.data['title']} ${widget.data['fname']}  ${widget.data['lname']}',
+            press: () {
+              openDialog('${widget.data['title']}', '${widget.data['fname']}',  '${widget.data['lname']}',context);
+
+            },
+          ),
           ProfileMenu(
             text: '${widget.data['birtday']}',
-            press: () {},
+            press: () {
+
+            },
           ),
           ProfileMenu(
             text: '${widget.data['phone']}',
@@ -53,7 +62,7 @@ class _ProfileState extends State<Profile> {
             text: '${widget.data['address']}',
             press: () {},
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextButton(
             style: TextButton.styleFrom(
               padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
@@ -81,22 +90,4 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
-}
-
-Future senddata(
-    dynamic idUser, String title, String fname, String lname) async {
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/$idUser');
-  http
-      .post(
-    url,
-    body: jsonEncode({"title": title, "fname": fname, "lname": lname}),
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
 }

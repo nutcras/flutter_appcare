@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appcare/views/booking/SelectBook.dart';
+import 'package:flutter_appcare/views/booking/selectBook.dart';
 
 class Carddetail extends StatefulWidget {
   const Carddetail({Key? key, required this.data}) : super(key: key);
-
   final dynamic data;
+
   @override
   State<Carddetail> createState() => _CarddetailState();
 }
 
 class _CarddetailState extends State<Carddetail> {
-  get taskNotifier => null;
+  TextEditingController idMentor = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ข้อมูลพนักงงาน'),
-        backgroundColor: Color.fromARGB(255, 45, 134, 156),
+        title: const Text('ข้อมูลพนักงงาน'),
+        backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SafeArea(
         child: Column(
@@ -105,8 +105,8 @@ class _CarddetailState extends State<Carddetail> {
                 Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>
-                            const SelectBooking()));
+                        builder: (context) =>
+                            SelectBooking(data: widget.data)));
               },
               child: const Text(
                 'นัดเวลา',

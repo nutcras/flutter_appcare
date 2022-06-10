@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ProfileMenu extends StatelessWidget {
-  const ProfileMenu({
-    Key? key,
-    required this.text,
-    this.press,
-  }) : super(key: key);
-
+  ProfileMenu({Key? key, required this.text, this.press, controller})
+      : super(key: key);
   final String text;
   final VoidCallback? press;
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var other = null;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextButton(

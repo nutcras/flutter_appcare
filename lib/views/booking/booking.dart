@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import '../../configs/api.dart';
 import 'book_detail.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/sidemenu.dart';
-import 'Waitingbooking.dart';
+import 'waitingbooking.dart';
 
 class Booking extends StatefulWidget {
   const Booking({Key? key}) : super(key: key);
@@ -25,10 +22,7 @@ class _BookingState extends State<Booking> {
   }
 
   startApi() async {
-    final prefs =
-        await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-    int? idUser = prefs.getInt('idm');
-    dynamic item = await getdata(idUser); //ส่งค่าไปยัง getdataหรือตัวรับapi
+    dynamic item = await getdata(72); //ส่งค่าไปยัง getdataหรือตัวรับapi
     setState(() {
       data = item;
     });
@@ -40,17 +34,6 @@ class _BookingState extends State<Booking> {
       appBar: AppBar(
         title: const Text('นัดหมาย'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
-        // leading: GestureDetector(
-        //   onTap: () {
-        //     Navigator.push(
-        //         context,
-        //         MaterialPageRoute<void>(
-        //             builder: (BuildContext context) => WaitingBooking()));
-        //   },
-        //   child: Icon(
-        //     Icons.timelapse_sharp, // add custom icons also
-        //   ),
-        // ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -122,7 +105,7 @@ class _BookingState extends State<Booking> {
                                   ),
                                   Text(
                                     'เริ่ม : ' +
-                                        DateFormat('dd-mm-yy KK:MM').format(
+                                        DateFormat('dd-mm-yy HH:mm').format(
                                             DateTime.parse(
                                                 '${data[i]['start_time']}')),
                                     style: const TextStyle(
@@ -131,7 +114,7 @@ class _BookingState extends State<Booking> {
                                   ),
                                   Text(
                                     'ถึง :  ' +
-                                        DateFormat('dd-mm-yy KK:MM').format(
+                                        DateFormat('dd-mm-yy HH:mm').format(
                                             DateTime.parse(
                                                 '${data[i]['end_time']}')),
                                     style: const TextStyle(
@@ -151,21 +134,4 @@ class _BookingState extends State<Booking> {
       drawer: SideMenu(), //หน้าปุ่มsidemenu
     );
   }
-}
-
-Future<dynamic> getdata(dynamic idUser) async {
-  Uri url = Uri.parse(
-      'http://206.189.92.71:3200/api/booking/cust/72/$idUser'); //รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง รับค่ามาจากiduser หรือตัวที่แชร์มาจากหน้าlogin ส่งไปยังurlเพื่อเช็คว่าคนนี้มีนัดหมายใครบ้าง
-  return await http
-      .get(
-    url,
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
 }

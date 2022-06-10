@@ -41,15 +41,15 @@ class _BookdetailState extends State<Bookdetail> {
                 child: Column(children: [
               Text(
                 'เริ่ม : ' +
-                    DateFormat('dd-mm-yy KK:MM')
+                    DateFormat('dd-mm-yy' '  เวลา : HH:mm')
                         .format(DateTime.parse('${widget.data['start_time']}')),
                 style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
               Text(
-                'ถึง :  ' +
-                    DateFormat('dd-mm-yy KK:MM')
+                'ถึง  :  ' +
+                    DateFormat('dd-mm-yy  ' 'เวลา : HH:mm')
                         .format(DateTime.parse('${widget.data['end_time']}')),
                 style: const TextStyle(
                   fontSize: 16,
@@ -141,7 +141,7 @@ class _BookdetailState extends State<Bookdetail> {
                 textStyle: const TextStyle(fontSize: 20),
               ),
               onPressed: () {
-                removeBooking('${widget.data['idb']}');
+                removeBooking('${widget.data['idb']}', context);
               },
               child: const Text('ยกเลิกนัด'),
             ),

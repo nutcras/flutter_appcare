@@ -3,9 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_appcare/configs/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../configs/config.dart';
-import '../views/login.dart';
+import '../views/outmain/login.dart';
 import 'package:http/http.dart' as http;
 import '../views/profile.dart';
 
@@ -32,7 +33,7 @@ class _SideMenuState extends State<SideMenu> {
 
   startApi() async {
     //เอาตัวidของcustomerมาใช้กับหน้านี้แล้วเอาค่าไปใส่ในidUser
-    dynamic item = await getdata(); //ส่งค่าไปยัง getdataหรือตัวรับapi
+    dynamic item = await getdataprofile(); //ส่งค่าไปยัง getdataหรือตัวรับapi
     setState(() {
       data = item;
     });
@@ -184,25 +185,4 @@ ${data['fname']}  ${data['lname']}''',
       },
     );
   }
-}
-
-Future<dynamic> getdata() async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? idUser = prefs.getInt('idm');
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/$idUser');
-  // Uri url = Uri.parse('http://192.168.1.9:3200/api/customer/$idUser');
-  return await http
-      .get(
-    url,
-    headers: headers,
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
 }
