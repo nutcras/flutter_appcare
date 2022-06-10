@@ -12,8 +12,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  late TextEditingController title;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
