@@ -173,17 +173,25 @@ Future sendtimebook(
   });
 }
 
-Future sendDataProfile(data, context) async {
+Future sendDataProfile1(title, name, surname, context) async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? idUser = prefs.getInt('idm');
   Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/$idUser');
   http
-      .post(
+      .put(
     url,
     headers: headers,
     body: jsonEncode({
-      "title":data
+      // "username":username,
+      // "password":password,
+      "title": title,
+      "fname": name,
+      "lname": surname,
+      // "images":images,
+      // "phone":phone,
+      // "biirday":birtday,
+      // "idcard":idcard
     }),
   )
       .then((req) async {

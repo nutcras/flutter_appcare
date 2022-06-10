@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appcare/models/dialog.dart';
 import 'package:flutter_appcare/models/profilemenu.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'outmain/login.dart';
@@ -12,10 +13,6 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   late TextEditingController title;
-
-  Future<void> getPersonalInfomation() async {
-    title = TextEditingController(text: widget.data['title']);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +40,11 @@ class _ProfileState extends State<Profile> {
           // ),
           const SizedBox(height: 20),
           ProfileMenu(
-            text: '${widget.data['fname']}  ${widget.data['lname']}',
+            text:
+                '${widget.data['title']} ${widget.data['fname']}  ${widget.data['lname']}',
             press: () {
-              print(title.text);
-              // opendialog(widge context);
-              // senddata('${widget.data['idc']}', '${widget.data['title']}',
-              //'${widget.data['fname']}', '${widget.data['lname']}'); อันนี้คือส่งข้อมูลอันเดียว
+              openDialog('${widget.data['title']}', '${widget.data['fname']}',
+                  '${widget.data['lname']}', context);
             },
           ),
           ProfileMenu(
