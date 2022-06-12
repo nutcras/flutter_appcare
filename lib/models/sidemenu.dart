@@ -1,13 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/configs/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../configs/config.dart';
 import '../views/outmain/login.dart';
-import 'package:http/http.dart' as http;
 import '../views/profile.dart';
 
 class SideMenu extends StatefulWidget {
@@ -68,8 +64,7 @@ class _SideMenuState extends State<SideMenu> {
                     Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                Profile(data: data)));
+                            builder: (BuildContext context) => Profile()));
                   }),
                   child: Row(
                     children: [
