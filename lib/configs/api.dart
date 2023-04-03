@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_appcare/configs/config.dart';
+import 'package:flutter_appcare/models/profilemenu.dart';
+import 'package:flutter_appcare/models/sidemenu.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../views/booking/waitingbooking.dart';
 import '../views/inputmentor.dart';
+import '../views/profile.dart';
 
 Future checkLogin(String username, String password, context) async {
   EasyLoading.show(status: 'loading...');
@@ -183,42 +186,17 @@ Future sendDataProfile1(title, name, surname, context) async {
     url,
     headers: headers,
     body: jsonEncode({
-      // "username":username,
-      // "password":password,
       "title": title,
       "fname": name,
       "lname": surname,
-      // "images":images,
-      // "phone":phone,
-      // "biirday":birtday,
-      // "idcard":idcard
     }),
   )
       .then((req) async {
-    if (req.statusCode == 204) {
+    if (req.statusCode == 201) {
       EasyLoading.showSuccess('Great Success!');
-    } else {
-      EasyLoading.showError('Failed with Error');
-    }
-  });
-}
-
-Future sendDataProfile2(password, context) async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? idUser = prefs.getInt('idm');
-  Uri url = Uri.parse('http://206.189.92.71:3200/api/customer/p1/$idUser');
-  http
-      .put(
-    url,
-    headers: headers,
-    body: jsonEncode({
-      "password": password,
-    }),
-  )
-      .then((req) async {
-    if (req.statusCode == 204) {
-      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const WaitingBooking()),
+          (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');
     }

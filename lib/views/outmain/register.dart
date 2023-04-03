@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../configs/api.dart';
-import 'package:flutter_appcare/models/textFormFieldModel';
+import 'package:flutter_appcare/models/textFormFieldModel.dart';
 
 class PageOne extends StatefulWidget {
   const PageOne({Key? key}) : super(key: key);
@@ -31,8 +31,6 @@ class _Register extends State<PageOne> {
       if (date != null) {
         setState(() {
           datenow = date;
-          // picdate.text = date.toString();
-          // picdate.text = DateFormat("dd/MM/yyyy").format(date);
         });
       }
     }
@@ -112,45 +110,6 @@ class _Register extends State<PageOne> {
                 const SizedBox(
                   height: 15,
                 ),
-                // TextFormField(
-                //   controller: picdate,
-                //   validator: (value) {
-                //     if (value!.isEmpty) {
-                //       return 'Please fill you date in the blank';
-                //     } else {
-                //       return null;
-                //     }
-                //   },
-                //   readOnly: true,
-                //   onTap: () {
-                //     newDate();
-                //   },
-                //   style: const TextStyle(
-                //       color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                //   keyboardType: TextInputType.text,
-                //   // ignore: prefer_const_constructors
-                //   decoration: InputDecoration(
-                //     labelText: 'date',
-                //     labelStyle: const TextStyle(color: Colors.white),
-                //     helperText: 'Type you date for display',
-                //     hintText: 'date',
-                //     hintStyle:
-                //         TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                //     enabledBorder: OutlineInputBorder(
-                //       borderSide:
-                //           BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                //       borderRadius: BorderRadius.all(Radius.circular(50)),
-                //     ),
-                //     errorBorder: OutlineInputBorder(
-                //         borderSide:
-                //             BorderSide(color: Color.fromARGB(255, 206, 6, 6)),
-                //         borderRadius: BorderRadius.all(Radius.circular(50))),
-                //     focusedBorder: OutlineInputBorder(
-                //         borderSide: BorderSide(
-                //             color: Color.fromARGB(255, 255, 255, 255)),
-                //         borderRadius: BorderRadius.all(Radius.circular(50))),
-                //   ),
-                // ),
                 SizedBox(
                   height: 10,
                 ),
@@ -163,9 +122,6 @@ class _Register extends State<PageOne> {
 
                     await checkRegister(username.text, password.text, name.text,
                         surname.text, context);
-
-                    // Navigator.pushNamedAndRemoveUntil(context,
-                    //     "/Page1", (Route<dynamic> route) => false);
                   },
                   child: Text(
                     'Confirm',
